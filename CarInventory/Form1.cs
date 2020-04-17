@@ -19,6 +19,7 @@ namespace CarInventory
         {
             InitializeComponent();
             loadDB();
+            DisplayCars();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -34,14 +35,14 @@ namespace CarInventory
 
             carsList.Add(car);
 
+            DisplayCars();
+        }
+
+        public void DisplayCars()
+        {
             outputLabel.Text = "";
 
-            //for (int i = 0; i < carsList.Count; i++)
-            //{
-            //    outputLabel.Text += carsList[i].year + " " + carsList[i].make + " " + carsList[i].colour + " " + carsList[i].mileage + "\n";
-            //}
-
-            foreach(Car c in carsList)
+            foreach (Car c in carsList)
             {
                 outputLabel.Text += c.year + " "
                     + c.make + " "
@@ -60,7 +61,7 @@ namespace CarInventory
             {
                 if (reader.NodeType == XmlNodeType.Text)
                 {
-                    reader.ReadToNextSibling("year");
+                   // reader.ReadToNextSibling("year");
                     year = reader.ReadString();
 
                     reader.ReadToNextSibling("make");
